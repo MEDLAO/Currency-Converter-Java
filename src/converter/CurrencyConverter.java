@@ -21,6 +21,13 @@ public class CurrencyConverter {
 		System.out.print("Enter target currency: ");
 		String targetCurrency = scanner.nextLine();  // Reads second string input
 		
+		// Use a fake conversion rate for testing
+		double rate = 0.85;
 		
+		// Calculate the converted amount
+		double convertedAmount = amount * rate;
+		
+		// Display the result
+		System.out.println(amount + " " + sourceCurrency + " is approximately " + convertedAmount + " " + targetCurrency);
 	}
 }
