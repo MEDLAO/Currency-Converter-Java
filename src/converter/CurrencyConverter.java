@@ -22,7 +22,24 @@ public class CurrencyConverter {
 		String targetCurrency = scanner.nextLine();  // Reads second string input
 		
 		// Use a fake conversion rate for testing
-		double rate = 0.85;
+		double rate = 0.0;
+		
+		if(sourceCurrency.equalsIgnoreCase("USD") && targetCurrency.equalsIgnoreCase("EUR")) {
+			rate = 0.85;
+		}
+		else if (sourceCurrency.equalsIgnoreCase("EUR") && targetCurrency.equalsIgnoreCase("USD")) {
+			rate = 1.1;
+		}
+		else if (sourceCurrency.equalsIgnoreCase("USD") && targetCurrency.equalsIgnoreCase("GBP")) {
+			rate = 0.75;
+		}
+		else if (sourceCurrency.equalsIgnoreCase("GBP") && targetCurrency.equalsIgnoreCase("USD")) {
+			rate = 1.3;
+		}
+		else {
+			System.out.print("Sorry this conversion is not supported yet.");
+			return;
+		}
 		
 		// Calculate the converted amount
 		double convertedAmount = amount * rate;
