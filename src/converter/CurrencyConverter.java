@@ -47,4 +47,20 @@ public class CurrencyConverter {
 		// Display the result
 		System.out.println(amount + " " + sourceCurrency + " is approximately " + convertedAmount + " " + targetCurrency);
 	}
+	
+	public static double fetchRateFromAPI(String fromCurrency, String toCurrency) {
+	    double rate = 0.0;
+	    
+	    try {
+	    	// Build the API URL using user input
+	    	String urlStr = "https://api.frankfurter.app/latest?from=" + fromCurrency + "&to=" + toCurrency;
+	    	
+	    } catch (Exception e) {
+	    	System.out.println("Error fetching rate: " + e.getMessage());
+	    }
+	    
+	    return rate;
+	}
+	
+
 }
