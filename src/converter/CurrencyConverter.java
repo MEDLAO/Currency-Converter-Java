@@ -55,6 +55,15 @@ public class CurrencyConverter {
 	    	// Build the API URL using user input
 	    	String urlStr = "https://api.frankfurter.app/latest?from=" + fromCurrency + "&to=" + toCurrency;
 	    	
+	    	// Create a URI (safe and modern way)
+	        java.net.URI uri = java.net.URI.create(urlStr);
+	        
+	        // Convert URI to URL for opening a connection
+	        java.net.URL url = uri.toURL();
+	    	
+	    	
+	    	
+	    	
 	    } catch (Exception e) {
 	    	System.out.println("Error fetching rate: " + e.getMessage());
 	    }
