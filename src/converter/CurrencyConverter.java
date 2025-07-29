@@ -60,7 +60,12 @@ public class CurrencyConverter {
 	        
 	        // Convert URI to URL for opening a connection
 	        java.net.URL url = uri.toURL();
-	    	
+	        
+	        // Open connection to the API
+	        java.net.HttpURLConnection conn = (java.net.HttpURLConnection) url.openConnection();
+	        
+	        // Set the request method to GET
+	        conn.setRequestMethod("GET");
 	    	
 	    	
 	    	
