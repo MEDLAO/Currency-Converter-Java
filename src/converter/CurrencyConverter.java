@@ -66,8 +66,14 @@ public class CurrencyConverter {
 	        
 	        // Set the request method to GET
 	        conn.setRequestMethod("GET");
-	    	
-	    	
+	        
+	        // Read the response stream from the connection
+	        java.io.InputStream inputStream = conn.getInputStream();
+	        
+	        // Create a Scanner to read the API response as text
+	        Scanner apiScanner = new java.util.Scanner(inputStream);
+
+	  
 	    	
 	    } catch (Exception e) {
 	    	System.out.println("Error fetching rate: " + e.getMessage());
