@@ -73,7 +73,13 @@ public class CurrencyConverter {
 	        // Create a Scanner to read the API response as text
 	        Scanner apiScanner = new java.util.Scanner(inputStream);
 
-	  
+	        // Store the entire API response in a single string
+	        StringBuilder response = new StringBuilder();
+	        while (apiScanner.hasNext()) {
+	            response.append(apiScanner.nextLine());
+	        }
+	        apiScanner.close();
+
 	    	
 	    } catch (Exception e) {
 	    	System.out.println("Error fetching rate: " + e.getMessage());
