@@ -21,31 +21,9 @@ public class CurrencyConverter {
 		System.out.print("Enter target currency: ");
 		String targetCurrency = scanner.nextLine();  // Reads second string input
 		
-		// Use a fake conversion rate for testing
-		double rate = 0.0;
-		
-		if(sourceCurrency.equalsIgnoreCase("USD") && targetCurrency.equalsIgnoreCase("EUR")) {
-			rate = 0.85;
-		}
-		else if (sourceCurrency.equalsIgnoreCase("EUR") && targetCurrency.equalsIgnoreCase("USD")) {
-			rate = 1.1;
-		}
-		else if (sourceCurrency.equalsIgnoreCase("USD") && targetCurrency.equalsIgnoreCase("GBP")) {
-			rate = 0.75;
-		}
-		else if (sourceCurrency.equalsIgnoreCase("GBP") && targetCurrency.equalsIgnoreCase("USD")) {
-			rate = 1.3;
-		}
-		else {
-			System.out.print("Sorry this conversion is not supported yet.");
-			return;
-		}
-		
-		// Calculate the converted amount
-		double convertedAmount = amount * rate;
-		
-		// Display the result
-		System.out.println(amount + " " + sourceCurrency + " is approximately " + convertedAmount + " " + targetCurrency);
+		double rate = fetchRateFromAPI(sourceCurrency, targetCurrency);
+		System.out.println("Rate received from API: " + rate);
+
 	}
 	
 	public static double fetchRateFromAPI(String fromCurrency, String toCurrency) {
@@ -79,6 +57,13 @@ public class CurrencyConverter {
 	            response.append(apiScanner.nextLine());
 	        }
 	        apiScanner.close();
+	        
+	        // Convert response to a string
+	        String json = response.toString();
+	        
+	        // Print the raw JSON response for testing
+	        System.out.println("Raw API response: " + json);
+
 
 	    	
 	    } catch (Exception e) {
