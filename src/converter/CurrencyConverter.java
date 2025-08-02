@@ -1,6 +1,7 @@
 package converter;
 
 import java.util.Scanner;
+import org.json.JSONObject;
 
 
 public class CurrencyConverter {
@@ -63,6 +64,12 @@ public class CurrencyConverter {
 	        
 	        // Print the raw JSON response for testing
 	        System.out.println("Raw API response: " + json);
+	        
+	        // Convert response text to JSON object
+	        JSONObject obj = new JSONObject(json);
+	        
+	        // Extract the rate using the "rates" key
+	        rate = obj.getJSONObject("rates").getDouble(toCurrency);
 
 
 	    	
