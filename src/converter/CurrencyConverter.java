@@ -24,6 +24,12 @@ public class CurrencyConverter {
 		
 		double rate = fetchRateFromAPI(sourceCurrency, targetCurrency);
 		System.out.println("Rate received from API: " + rate);
+		
+		// Calculate the converted amount
+        double convertedAmount = amount * rate;
+        
+        // Display the result
+        System.out.println(amount + " " + sourceCurrency + " = " + convertedAmount + " " + targetCurrency);
 
 	}
 	
@@ -70,6 +76,7 @@ public class CurrencyConverter {
 	        
 	        // Extract the rate using the "rates" key
 	        rate = obj.getJSONObject("rates").getDouble(toCurrency);
+	        
 
 
 	    	
