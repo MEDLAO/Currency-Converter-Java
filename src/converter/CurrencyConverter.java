@@ -29,7 +29,8 @@ public class CurrencyConverter {
         double convertedAmount = amount * rate;
         
         // Display the result
-        System.out.println(amount + " " + sourceCurrency + " = " + convertedAmount + " " + targetCurrency);
+        System.out.printf("%.2f %s = %.2f %s%n", amount, sourceCurrency.toUpperCase(), convertedAmount, targetCurrency.toUpperCase());
+        
 
 	}
 	
