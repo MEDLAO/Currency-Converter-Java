@@ -25,6 +25,13 @@ public class CurrencyConverter {
 		double rate = fetchRateFromAPI(sourceCurrency, targetCurrency);
 		System.out.println("Rate received from API: " + rate);
 		
+		// Handle case where API call fails or invalid currency is entered
+		if (rate == -1.0) {
+			System.out.println("Conversion failed due to an invalid currency or API issue.");
+			return;
+		}
+		
+	
 		// Calculate the converted amount
         double convertedAmount = amount * rate;
         
@@ -82,11 +89,13 @@ public class CurrencyConverter {
 
 	    	
 	    } catch (Exception e) {
-	    	System.out.println("Error fetching rate: " + e.getMessage());
+	    	System.out.println("Error fetching rate. This may be due to an invalid currency code or network issue.");
+	    	return -1.0;
 	    }
 	    
 	    return rate;
 	}
+	
 	
 
 }
