@@ -5,41 +5,57 @@ import org.json.JSONObject;
 
 
 public class CurrencyConverter {
-	
-	public static void main(String[] args) {
-		
-		// Create a Scanner object to read input from the console
-		Scanner scanner = new Scanner(System.in);
-		
-		System.out.print("Enter amount: ");
-		double amount = scanner.nextDouble();   // Read number input
 
-		scanner.nextLine(); // Clear the leftover newline from nextDouble()
+    public static void main(String[] args) {
 
-		System.out.print("Enter source currency: ");
-		String sourceCurrency = scanner.nextLine();  // Now reads actual user input
+        // Create a Scanner object to read input from the console
+        Scanner scanner = new Scanner(System.in);
 
-		System.out.print("Enter target currency: ");
-		String targetCurrency = scanner.nextLine();  // Reads second string input
-		
-		double rate = fetchRateFromAPI(sourceCurrency, targetCurrency);
-		System.out.println("Rate received from API: " + rate);
-		
-		// Handle case where API call fails or invalid currency is entered
-		if (rate == -1.0) {
-			System.out.println("Conversion failed due to an invalid currency or API issue.");
-			return;
-		}
-		
-	
-		// Calculate the converted amount
+        double amount;
+
+        // Loop until the user enters a positive amount
+        while (true) {
+            System.out.print("Enter amount: ");
+            amount = scanner.nextDouble();   // Read number input
+
+            if (amount > 0) {
+                break;
+            } else {
+                System.out.println("Amount must be greater than 0.");
+            }
+        }
+
+        scanner.nextLine(); // Clear the leftover newline from nextDouble()
+
+        String sourceCurrency;
+        String targetCurrency;
+        double rate;
+
+        // Loop until valid currencies are provided (API returns a valid rate)
+        while (true) {
+            System.out.print("Enter source currency: ");
+            sourceCurrency = scanner.nextLine();
+
+            System.out.print("Enter target currency: ");
+            targetCurrency = scanner.nextLine();
+
+            rate = fetchRateFromAPI(sourceCurrency, targetCurrency);
+            System.out.println("Rate received from API: " + rate);
+
+            if (rate != -1.0) {
+                break;
+            } else {
+                System.out.println("Conversion failed due to an invalid currency or API issue.");
+            }
+        }
+
+        // Calculate the converted amount
         double convertedAmount = amount * rate;
-        
-        // Display the result
-        System.out.printf("%.2f %s = %.2f %s%n", amount, sourceCurrency.toUpperCase(), convertedAmount, targetCurrency.toUpperCase());
-        
 
-	}
+        // Display the result
+        System.out.printf("%.2f %s = %.2f %s%n",
+                amount, sourceCurrency.toUpperCase(), convertedAmount, targetCurrency.toUpperCase());
+    }
 	
 	public static double fetchRateFromAPI(String fromCurrency, String toCurrency) {
 	    double rate = 0.0;
