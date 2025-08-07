@@ -5,6 +5,12 @@ import org.json.JSONObject;
 
 
 public class CurrencyConverter {
+	
+	 // Set of supported currency codes
+    private static final java.util.Set<String> SUPPORTED_CURRENCIES = java.util.Set.of(
+        "USD", "EUR", "GBP", "JPY", "AUD", "CAD", "CHF", "CNY", "SEK", "NZD", 
+        "MXN", "BRL", "INR", "ZAR", "NOK", "RUB", "KRW", "SGD", "TRY"
+    );
 
     public static void main(String[] args) {
 
