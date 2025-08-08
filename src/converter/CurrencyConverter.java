@@ -36,14 +36,24 @@ public class CurrencyConverter {
         String sourceCurrency;
         String targetCurrency;
         double rate;
-
-        // Loop until valid currencies are provided (API returns a valid rate)
+        
+        // Loop until valid currencies are provided (exist in the supported set and API returns a valid rate)
         while (true) {
             System.out.print("Enter source currency: ");
-            sourceCurrency = scanner.nextLine();
+            sourceCurrency = scanner.nextLine().toUpperCase();
+
+            if (!SUPPORTED_CURRENCIES.contains(sourceCurrency)) {
+                System.out.println("Unsupported source currency. Please try again.");
+                continue;
+            }
 
             System.out.print("Enter target currency: ");
-            targetCurrency = scanner.nextLine();
+            targetCurrency = scanner.nextLine().toUpperCase();
+
+            if (!SUPPORTED_CURRENCIES.contains(targetCurrency)) {
+                System.out.println("Unsupported target currency. Please try again.");
+                continue;
+            }
 
             rate = fetchRateFromAPI(sourceCurrency, targetCurrency);
             System.out.println("Rate received from API: " + rate);
@@ -54,6 +64,7 @@ public class CurrencyConverter {
                 System.out.println("Conversion failed due to an invalid currency or API issue.");
             }
         }
+
 
         // Calculate the converted amount
         double convertedAmount = amount * rate;
