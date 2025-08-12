@@ -2,7 +2,7 @@
 
 
 <p>
-  <img src="media/currency-converter.png"  height="300" />
+  <img src="media/currency-converter.png"  width="100%" height="300" />
 </p>
 
 
